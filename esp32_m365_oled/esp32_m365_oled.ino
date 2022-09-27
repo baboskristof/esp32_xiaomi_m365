@@ -8,14 +8,6 @@ references used:
 //current version working on esp32 & esp8266
 #define ESP32
 
-#ifdef ESP32
-  #include <WiFi.h>
-  #include <WiFiUdp.h>
-  #include <Update.h> //needed for arduinoOTA on esp32
-
-//#include <endian.h>
-#include <ArduinoOTA.h>
-
 /* Modifications to ADAFRUIT SSD1306 Library 1.02for ESP32:
  *  Adafruit_SSD1306.h:35 - #elif defined(ESP8266) || defined(ESP32) || defined(ARDUINO_STM32_FEATHER)
  *  Adafruit_SSD1306.h: change line "void begin(uint8_t switchvcc = SSD1306_SWITCHCAPVCC, uint8_t i2caddr = SSD1306_I2C_ADDRESS, bool reset=true);"
@@ -73,6 +65,7 @@ references used:
   //enable rx/tx only  modes see: https://github.com/esp8266/Arduino/blob/master/cores/esp8266/HardwareSerial.h
   #ifdef ESP32
     #define DebugSerial Serial //Debuguart = default Serial Port/UART0
+
     HardwareSerial M365Serial(2);  // UART2for M365
     #define UART2RX GPIO_NUM_23 //Wemos board
     #define UART2TX GPIO_NUM_5 //Wemos board
@@ -80,7 +73,7 @@ references used:
     #define M365SerialFull M365Serial.begin(115200,SERIAL_8N1, UART2RX, UART2TX);
     //#define Serial1RX M365Serial.begin(115200,SERIAL_8N1, UART2RX, -1)
     #define M365SerialTX M365Serial.begin(115200,SERIAL_8N1, UART2RXunused, UART2TX);
-
+  #endif
 
 //M365 - serial receiver
   #define maxlen 256 //serial buffer size in bytes
@@ -632,7 +625,7 @@ void setup() {
     sprintf(chipid,"%02X%02X%02X",(uint8_t)(cit>>24),(uint8_t)(cit>>32),(uint8_t)(cit>>40));
     DebugSerial.println(chipid);
     sprintf(mac,"%02X%02X%02X%02X%02X%02X",(uint8_t)(cit),(uint8_t)(cit>>8),(uint8_t)(cit>>16),(uint8_t)(cit>>24),(uint8_t)(cit>>32),(uint8_t)(cit>>40));
-
+  #endif
   start_m365();
 } //setup
 
