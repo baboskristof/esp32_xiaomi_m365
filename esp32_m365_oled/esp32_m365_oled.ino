@@ -47,13 +47,13 @@ references used:
 #define swversion "18.07.11"
 
 //functional modules
-  #define useoled1 //comment out to disable oled functionality
+  //#define useoled1 //comment out to disable oled functionality
   //#define useoled2
   //#define usewlanclientmode //NOT IMPLEMENTED comment out to disable Wifi Client functionality
   //#define usewlanapmode //NOT IMPLEMENTED  comment out to disable Wifi Access Poiint functionality
-  #define usetelnetserver //comment out to disable telnet status/telemetrie server, this also disables RAW Server (so only mqtt might be left for leaving wifi activated)
+  //#define usetelnetserver //comment out to disable telnet status/telemetrie server, this also disables RAW Server (so only mqtt might be left for leaving wifi activated)
   //#define userawserver //comment out to disable RAW Serial Data BUS Stream on Port 36524, NOT VERIFIED against wired-data-stream
-  #define usepacketserver //comment out to disable PACKET Decode on Port 36525
+  //#define usepacketserver //comment out to disable PACKET Decode on Port 36525
   //#define usemqtt //NOT IMPLEMENTED comment out to disable mqtt functionality
 
 //DEBUG Settings
